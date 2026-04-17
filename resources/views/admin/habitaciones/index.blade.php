@@ -72,12 +72,19 @@
     </ul>
 </aside>
 
+
     <main class="main-content">
         <header class="header-admin">
             <h1>Gestión de Habitaciones</h1>
             <a href="{{ route('habitaciones.create') }}" class="btn-dorado"><i class="fas fa-plus"></i> Agregar Habitación</a>
             
         </header>
+
+            @extends('layouts.admin') {{-- Usamos el cascarón --}}
+
+            @section('contenido')
+                <h1>Gestión de Habitaciones</h1>
+                {{-- Aquí va tu tabla de habitaciones --}}
 
         <section class="table-container">
             <table>
@@ -123,6 +130,7 @@
                 </tbody>
             </table>
         </section>
+        @endsection
     </main>
 
 </body>

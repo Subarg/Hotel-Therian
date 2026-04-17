@@ -55,7 +55,6 @@
             </article>
 
             <article class="form-container sign-up-container">
-                Route::post('/registro', [App\Http\Controllers\AuthController::class, 'register'])->name('registro.post');
                     @csrf
                     <h1>Registrarse</h1>
                     

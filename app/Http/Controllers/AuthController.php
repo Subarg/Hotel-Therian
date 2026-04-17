@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User; // Importamos el modelo de Usuario
-use Illuminate\Support\Facades\Auth; // Maneja las sesiones
-use Illuminate\Support\Facades\Hash; // Encripta las contraseñas
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // FUNCIÓN PARA REGISTRAR
+    
     public function register(Request $request)
 {
     $request->validate([
@@ -29,31 +29,29 @@ class AuthController extends Controller
 
     return redirect()->to('/');
 }
-
-    // FUNCIÓN PARA INICIAR SESIÓN
+    public function showLogin()
+    {
+        return view('login'); 
+    }
 public function login(Request $request)
 {
-    $credentials = [
-        'usuario' => $request->email, 
-        'password' => $request->password
-    ];
+    $credentials = ['usuario' => $request->email, 'password' => $request->password];
 
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
+        $user = Auth::user();
 
-        // LÓGICA DE REDIRECCIÓN POR ROL
-        if (Auth::user()->rol_id == 1) {
-            // Si es Admin (Rol 1), va al panel
-            return redirect()->to('/admin/habitaciones');
-        }
-
-        // Si es cualquier otro (Cliente/Común), va a la vista de inicio
-        return redirect()->to('/');
+        // Redirección inteligente por Rol
+        return match($user->rol_id) {
+            1 => redirect()->to('/admin/habitaciones'), // Super Admin
+            3 => redirect()->to('/admin/spa'),          // Encargado Spa
+            4 => redirect()->to('/admin/expediciones'), // Encargado Expediciones
+            5 => redirect()->to('/admin/vinos'),        // Encargado Vinos
+            default => redirect()->to('/inicio'),             // Clientes (Rol 2)
+        };
     }
 
-    return redirect()->to('/login')->withErrors([
-        'email' => 'Las credenciales son incorrectas.',
-    ]);
+    return back()->withErrors(['email' => 'Credenciales incorrectas']);
 }
 
     public function logout(Request $request)

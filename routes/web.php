@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 // Ruta principal (cuando entran a hotel-therian.test/)
 Route::get('/', function () {
-    // IMPORTANTE: Como tu archivo se llama Inicio.blade.php (con mayúscula),
-    // debemos ponerlo exactamente igual aquí.
     return view('login'); 
 });
 
@@ -75,3 +73,5 @@ Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->na
 
 // Haz lo mismo con el registro si lo necesitas
 Route::post('/registro', [App\Http\Controllers\AuthController::class, 'register'])->name('register.post');
+
+Route::post('/registro', [App\Http\Controllers\AuthController::class, 'register'])->name('registro.post');
