@@ -60,12 +60,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/habitaciones/{id}/edit', [HabitacionController::class, 'edit'])->name('habitaciones.edit');
     Route::put('/admin/habitaciones/{id}', [HabitacionController::class, 'update'])->name('habitaciones.update');
     Route::delete('/admin/habitaciones/{id}', [HabitacionController::class, 'destroy'])->name('habitaciones.destroy');
+    // Rutas del Spa
+    Route::get('/admin/spa', [\App\Http\Controllers\Admin\InsumoController::class, 'index'])->name('spa.index');
 
 });
 
 use App\Http\Controllers\AuthController;
 
-// Rutas para procesar los datos de los formularios
-Route::post('/registro', [AuthController::class, 'register'])->name('registro.post');
-Route::post('/login-post', [AuthController::class, 'login'])->name('login.post');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+// Ruta para mostrar la vista (GET)
+Route::get('/login', [App\Http\Controllers\AuthController::class, 'showLogin'])->name('login');
+
+// Ruta para procesar los datos (POST) - AQUÍ ESTÁ EL FIX
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login.post');
+
+// Haz lo mismo con el registro si lo necesitas
+Route::post('/registro', [App\Http\Controllers\AuthController::class, 'register'])->name('register.post');

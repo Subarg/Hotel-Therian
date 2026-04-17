@@ -43,7 +43,7 @@
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                         <input type="email" id="loginEmail" name="email" placeholder="Correo electrónico" required>
                     </fieldset>
-                    
+
                     <fieldset class="input-group">
                         <label for="loginPassword" class="sr-only">Contraseña</label>
                         <i class="fas fa-lock" aria-hidden="true"></i>
@@ -55,16 +55,14 @@
             </article>
 
             <article class="form-container sign-up-container">
-                <form action="{{ route('registro.post') }}" method="POST">
+                Route::post('/registro', [App\Http\Controllers\AuthController::class, 'register'])->name('registro.post');
                     @csrf
                     <h1>Registrarse</h1>
                     
                     <fieldset class="input-group">
                         <label for="registerName" class="sr-only">Nombre completo</label>
-                        <i class="fas fa-user" aria-hidden="true"></i>
-                        
-                        <input type="text" id="registerName" name="nombre" placeholder="Nombre completo" required>
-                        
+                        <i class="fas fa-user" aria-hidden="true"></i>                   
+                        <input type="text" id="registerName" name="nombre" placeholder="Nombre completo" required>                       
                     </fieldset>
                     
                     <fieldset class="input-group">

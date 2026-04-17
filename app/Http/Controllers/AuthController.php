@@ -31,22 +31,30 @@ class AuthController extends Controller
 }
 
     // FUNCIÓN PARA INICIAR SESIÓN
-    public function login(Request $request)
-    {
-        $credentials = [
-            'usuario' => $request->email, 
-            'password' => $request->password
-        ];
+public function login(Request $request)
+{
+    $credentials = [
+        'usuario' => $request->email, 
+        'password' => $request->password
+    ];
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+
+        // LÓGICA DE REDIRECCIÓN POR ROL
+        if (Auth::user()->rol_id == 1) {
+            // Si es Admin (Rol 1), va al panel
             return redirect()->to('/admin/habitaciones');
         }
 
-        return back()->withErrors([
-            'email' => 'Las credenciales no coinciden con nuestros registros.',
-        ]);
+        // Si es cualquier otro (Cliente/Común), va a la vista de inicio
+        return redirect()->to('/');
     }
+
+    return redirect()->to('/login')->withErrors([
+        'email' => 'Las credenciales son incorrectas.',
+    ]);
+}
 
     public function logout(Request $request)
     {

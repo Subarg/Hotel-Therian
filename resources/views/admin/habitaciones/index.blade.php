@@ -59,7 +59,7 @@
         @endif
 
         @if(in_array(Auth::user()->rol_id, [1, 3]))
-            <li><a href="#"><i class="fas fa-spa"></i> Cosas del Spa</a></li>
+            <li><a href="{{ route('spa.index') }}"><i class="fas fa-spa"></i> Cosas del Spa</a></li>
         @endif
 
         @if(in_array(Auth::user()->rol_id, [1, 4]))
