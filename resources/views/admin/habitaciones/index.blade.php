@@ -52,15 +52,25 @@
 <body>
 
     <aside class="sidebar">
-        <h2>Admin Therian</h2>
-        <ul>
-            <li><a href="/admin/habitaciones" class="active"><i class="fas fa-bed"></i> Habitaciones</a></li>
+    <h2>Admin Therian</h2>
+    <ul>
+        @if(Auth::user()->rol_id == 1)
+            <li><a href="{{ route('habitaciones.index') }}"><i class="fas fa-bed"></i> Habitaciones</a></li>
+        @endif
+
+        @if(in_array(Auth::user()->rol_id, [1, 3]))
             <li><a href="#"><i class="fas fa-spa"></i> Cosas del Spa</a></li>
+        @endif
+
+        @if(in_array(Auth::user()->rol_id, [1, 4]))
             <li><a href="#"><i class="fas fa-hiking"></i> Expediciones</a></li>
+        @endif
+
+        @if(in_array(Auth::user()->rol_id, [1, 5]))
             <li><a href="#"><i class="fas fa-wine-glass-alt"></i> Catas de Vinos</a></li>
-        </ul>
-        <a href="/" class="btn-salir"><i class="fas fa-sign-out-alt"></i> Volver al Sitio</a>
-    </aside>
+        @endif
+    </ul>
+</aside>
 
     <main class="main-content">
         <header class="header-admin">

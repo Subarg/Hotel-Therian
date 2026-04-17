@@ -48,12 +48,24 @@ Route::get('/pago', function () {
     return view('pago');
 });
 
-Route::get('/', function () {
-    return view('login');
-});
 
 use App\Http\Controllers\Admin\HabitacionController;
 
-Route::prefix('admin')->group(function () {
-    Route::resource('habitaciones', HabitacionController::class);
+Route::middleware(['auth'])->group(function () {
+    
+    // Aquí adentro pones TODAS tus rutas del administrador
+    Route::get('/admin/habitaciones', [HabitacionController::class, 'index'])->name('habitaciones.index');
+    Route::get('/admin/habitaciones/create', [HabitacionController::class, 'create'])->name('habitaciones.create');
+    Route::post('/admin/habitaciones', [HabitacionController::class, 'store'])->name('habitaciones.store');
+    Route::get('/admin/habitaciones/{id}/edit', [HabitacionController::class, 'edit'])->name('habitaciones.edit');
+    Route::put('/admin/habitaciones/{id}', [HabitacionController::class, 'update'])->name('habitaciones.update');
+    Route::delete('/admin/habitaciones/{id}', [HabitacionController::class, 'destroy'])->name('habitaciones.destroy');
+
 });
+
+use App\Http\Controllers\AuthController;
+
+// Rutas para procesar los datos de los formularios
+Route::post('/registro', [AuthController::class, 'register'])->name('registro.post');
+Route::post('/login-post', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
