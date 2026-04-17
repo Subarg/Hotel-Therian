@@ -1,0 +1,252 @@
+@extends('layouts.app')
+
+@section('titulo', 'Inicio - Hotel Therian')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/Inicio.css') }}">
+@endsection
+
+@section('contenido')
+        <div id="overlay-carrito" class="overlay-carrito" hidden></div>
+
+            <!-- Carrusel 3d?? salddra? -->
+        <section class="carrusel-3d-container">
+        <h2 class="titulo-seccion">Nuestras Habitaciones</h2>
+        
+        <div class="escenario-3d">
+            <div id="carousel-rotativo">
+                <figure class="habitacion-card">
+                    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=800&auto=format&fit=crop" alt="Suite Deluxe">
+                    <figcaption>Suite Deluxe</figcaption>
+                </figure>
+                <figure class="habitacion-card">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop" alt="Premium">
+                    <figcaption>Premium Double</figcaption>
+                </figure>
+                <figure class="habitacion-card">
+                    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop" alt="Presidencial">
+                    <figcaption>Suite Presidencial</figcaption>
+                </figure>
+                <figure class="habitacion-card">
+                    <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=800&auto=format&fit=crop" alt="Familiar">
+                    <figcaption>Habitación Familiar</figcaption>
+                </figure>
+                <figure class="habitacion-card">
+                        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=800&auto=format&fit=crop" alt="Loft">
+                        <figcaption>Loft Panorámico</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+
+        <main id="hero">
+            
+            <article class="hero-content">
+                <h1>Escápate a lo <br> Extraordinario</h1>
+                <p>Descubre habitaciones de lujo con vistas inolvidables UwU.</p>
+            </article>
+
+            <section aria-label="Buscador de reservas" class="booking-glass-card">
+                <form action="#" method="GET" class="booking-form">
+                    
+                    <fieldset class="input-group">
+                        <label for="llegada">Llegada</label>
+                        <input type="date" id="llegada" name="llegada" required>
+                    </fieldset>
+                    
+                    <fieldset class="input-group">
+                        <label for="salida">Salida</label>
+                        <input type="date" id="salida" name="salida" required>
+                    </fieldset>
+                    
+                    <fieldset class="input-group">
+                        <label for="huespedes">Huéspedes</label>
+                        <select id="huespedes" name="huespedes">
+                            <option value="1">1 Persona</option>
+                            <option value="2">2 Personas</option>
+                            <option value="familia">Familia (3-4)</option>
+                        </select>
+                    </fieldset>
+                    
+                    <button type="submit" class="btn-book">Ver Habitaciones</button>
+                </form>
+            </section>
+
+        </main>
+
+        <section class="inicio-mosaico-lujo">
+                <article class="fila-iconos-dorados">
+                    <div class="icono-item">
+                        <i class="fas fa-concierge-bell"></i>
+                        <span>Recepción 24/7</span>
+                    </div>
+                    <div class="icono-item">
+                        <i class="fas fa-spa"></i>
+                        <span>Spa Wellness</span>
+                    </div>
+                    <div class="icono-item">
+                        <i class="fas fa-utensils"></i>
+                        <span>Alta Cocina</span>
+                    </div>
+                    <div class="icono-item">
+                        <i class="fas fa-wine-glass-alt"></i>
+                        <span>Bar Premium</span>
+                    </div>
+                </article>
+
+                <div class="grid-mosaico">
+                    <div class="columna-izquierda-mosaico">
+                        <figure class="foto-chica">
+                            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=600&auto=format&fit=crop" alt="Piscina exterior">
+                        </figure>
+                        <figure class="foto-chica">
+                            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600&auto=format&fit=crop" alt="Área de masajes">
+                        </figure>
+                    </div>
+                    <figure class="foto-grande-derecha">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop" alt="Suite principal de lujo">
+                    </figure>
+                </div>
+            </section>
+
+            
+
+            <section class="inicio-servicios-numerados">
+                <h2 class="titulo-servicios">Nuestra Excelencia</h2>
+                
+                <div class="grid-cuatro-columnas">
+                    <article class="columna-num">
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=400&auto=format&fit=crop" alt="Habitaciones">
+                        </figure>
+                        <div class="num-gigante">01</div>
+                        <h3>Diseño Exclusivo</h3>
+                        <p>Espacios creados para elevar cada uno de tus sentidos.</p>
+                    </article>
+
+                    <article class="columna-num">
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1519449556851-d720790e6328?q=80&w=400&auto=format&fit=crop" alt="Gastronomía">
+                        </figure>
+                        <div class="num-gigante">02</div>
+                        <h3>Alta Gastronomía</h3>
+                        <p>Sabores de autor que se fusionan con ingredientes locales.</p>
+                    </article>
+
+                    <article class="columna-num">
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1534164104278-f736e67bf3c0?q=80&w=400&auto=format&fit=crop" alt="Ubicación">
+                        </figure>
+                        <div class="num-gigante">03</div>
+                        <h3>Entorno Natural</h3>
+                        <p>Arquitectura mimetizada con el paisaje para una paz total.</p>
+                    </article>
+
+                    <article class="columna-num">
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=400&auto=format&fit=crop" alt="Servicio">
+                        </figure>
+                        <div class="num-gigante">04</div>
+                        <h3>Servicio Elite</h3>
+                        <p>Atención hiper-personalizada diseñada para tu confort.</p>
+                    </article>
+                </div>
+            </section>
+
+
+            <section class="inicio-bloques-superpuestos">
+                <h2 class="titulo-bloques">Razones para Elegirnos</h2>
+                
+                <div class="contenedor-overlap">
+                    <div class="cuadricula-tarjetas-overlap">
+                        <article class="tarjeta-overlap">
+                            <h4>Privacidad Total</h4>
+                            <p>Villas independientes diseñadas para garantizar que tu descanso no sea interrumpido por nada.</p>
+                        </article>
+                        <article class="tarjeta-overlap">
+                            <h4>Vistas Panorámicas</h4>
+                            <p>Despierta cada mañana con paisajes inigualables directamente desde tu balcón.</p>
+                        </article>
+                        <article class="tarjeta-overlap">
+                            <h4>Confort Térmico</h4>
+                            <p>Sistemas inteligentes de climatización que se adaptan a tus preferencias automáticamente.</p>
+                        </article>
+                        <article class="tarjeta-overlap">
+                            <h4>Materiales Premium</h4>
+                            <p>Maderas finas, mármoles importados y sábanas de algodón egipcio de 800 hilos.</p>
+                        </article>
+                    </div>
+
+                    <figure class="imagen-overlap">
+                        <img src="https://images.unsplash.com/photo-1618221118493-9cfa1a1c00da?q=80&w=800&auto=format&fit=crop" alt="Arquitectura del hotel">
+                    </figure>
+                </div>
+            </section>
+
+            <section class="seccion-tabla-precios">
+                <div class="encabezado-planes">
+                    <h2>Comparativa de Planes</h2>
+                    <p>Analiza a detalle qué incluye cada una de nuestras tarifas.</p>
+                </div>
+
+                <div class="contenedor-tabla">
+                    <table class="tabla-lujo">
+                        
+                        <thead>
+                            <tr>
+                                <th class="col-caracteristicas">Beneficios e Inclusiones</th>
+                                
+                                <th>Escapada Clásica <br><span class="precio-tabla">$250 / noche</span></th>
+                                
+                                <th class="col-destacada">Experiencia Therian <br><span class="precio-tabla">$450 / noche</span></th>
+                                
+                                <th>Lujo Absoluto <br><span class="precio-tabla">$850 / noche</span></th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr>
+                                <td class="nombre-caracteristica">Tipo de Habitación</td>
+                                <td>Deluxe Standard</td>
+                                <td class="col-destacada">Suite Vista al Mar</td>
+                                <td>Suite Presidencial</td>
+                            </tr>
+                            <tr>
+                                <td class="nombre-caracteristica">Alimentos y Bebidas</td>
+                                <td>Desayuno Continental</td>
+                                <td class="col-destacada">Buffet Premium</td>
+                                <td>Todo Incluido (24/7)</td>
+                            </tr>
+                            <tr>
+                                <td class="nombre-caracteristica">Acceso a Spa</td>
+                                <td>Costo Adicional</td>
+                                <td class="col-destacada">1 Masaje (45 min) incluido</td>
+                                <td>Acceso Ilimitado</td>
+                            </tr>
+                            <tr>
+                                <td class="nombre-caracteristica">Horario de Checkout</td>
+                                <td>12:00 PM</td>
+                                <td class="col-destacada">Late Checkout (2:00 PM)</td>
+                                <td>Horario Flexible</td>
+                            </tr>
+                            <tr>
+                                <td class="nombre-caracteristica">Extras VIP</td>
+                                <td>—</td>
+                                <td class="col-destacada">—</td>
+                                <td>Mayordomo y Traslado Privado</td>
+                            </tr>
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td></td> <td><button class="btn-tabla-simple">Seleccionar</button></td>
+                                <td class="col-destacada"><button class="btn-tabla-dorado">Seleccionar</button></td>
+                                <td><button class="btn-tabla-simple">Seleccionar</button></td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </section>
+@endsection
