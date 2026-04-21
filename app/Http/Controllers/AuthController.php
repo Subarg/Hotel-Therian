@@ -45,7 +45,7 @@ public function login(Request $request)
         return match($user->rol_id) {
             1 => redirect()->to('/admin/habitaciones'), // Super Admin
             3 => redirect()->to('/admin/spa'),          // Encargado Spa
-            4 => redirect()->to('/admin/expediciones'), // Encargado Expediciones
+            4 => redirect()->to('/admin/rutas'), // Encargado Expediciones
             5 => redirect()->to('/admin/vinos'),        // Encargado Vinos
             default => redirect()->to('/inicio'),             // Clientes (Rol 2)
         };

@@ -79,6 +79,9 @@
             overflow-y: auto;
         }
     </style>
+
+    @yield('styles')
+
 </head>
 <body>
     <div class="admin-container">
@@ -106,7 +109,8 @@
         </aside>
 
         <main class="content">
-            @yield('contenido') </main>
+            @yield('contenido') 
+        </main>
     </div>
 </body>
 </html>
