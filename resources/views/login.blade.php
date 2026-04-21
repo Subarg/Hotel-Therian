@@ -55,6 +55,7 @@
             </article>
 
             <article class="form-container sign-up-container">
+                <form action="{{ route('register.post') }}" method="POST">
                     @csrf
                     <h1>Registrarse</h1>
                     

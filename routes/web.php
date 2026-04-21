@@ -48,6 +48,8 @@ Route::get('/pago', function () {
 
 
 use App\Http\Controllers\Admin\HabitacionController;
+use App\Http\Controllers\Admin\VinoController;
+use App\Http\Controllers\Admin\RutaController;
 
 Route::middleware(['auth'])->group(function () {
     
@@ -60,6 +62,15 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/habitaciones/{id}', [HabitacionController::class, 'destroy'])->name('habitaciones.destroy');
     // Rutas del Spa
     Route::get('/admin/spa', [\App\Http\Controllers\Admin\InsumoController::class, 'index'])->name('spa.index');
+    Route::get('/admin/spa/create', [\App\Http\Controllers\Admin\InsumoController::class, 'create'])->name('spa.create');
+    Route::post('/admin/spa', [\App\Http\Controllers\Admin\InsumoController::class, 'store'])->name('spa.store');
+    Route::get('/admin/spa/{id}/edit', [\App\Http\Controllers\Admin\InsumoController::class, 'edit'])->name('spa.edit');
+    Route::put('/admin/spa/{id}', [\App\Http\Controllers\Admin\InsumoController::class, 'update'])->name('spa.update');
+    Route::delete('/admin/spa/{id}', [\App\Http\Controllers\Admin\InsumoController::class, 'destroy'])->name('spa.destroy');
+    // Rutas de Vinos
+    Route::resource('/admin/vinos', VinoController::class)->names('vinos');
+    // Rutas de Rutas
+    Route::resource('/admin/rutas', RutaController::class)->names('rutas');
 
 });
 
@@ -71,7 +82,11 @@ Route::get('/login', [App\Http\Controllers\AuthController::class, 'showLogin'])-
 // Ruta para procesar los datos (POST) - AQUÍ ESTÁ EL FIX
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login.post');
 
-// Haz lo mismo con el registro si lo necesitas
-Route::post('/registro', [App\Http\Controllers\AuthController::class, 'register'])->name('register.post');
+// Ruta para cerrar sesión
+Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
-Route::post('/registro', [App\Http\Controllers\AuthController::class, 'register'])->name('registro.post');
+// Ruta para mostrar el formulario de registro
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+
+// Ruta para procesar el formulario de registro
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');

@@ -94,6 +94,11 @@
                 </fieldset>
 
                 <fieldset class="input-group">
+                    <label for="disponible" style="display: inline-block;">¿Está disponible?</label>
+                    <input type="checkbox" id="disponible" name="disponible" value="1" {{ $habitacion->disponible ? 'checked' : '' }} style="width: auto; margin-left: 10px; transform: scale(1.5);">
+                </fieldset>
+
+                <fieldset class="input-group">
                     <label for="descripcion">Descripción Breve</label>
                     <textarea id="descripcion" name="descripcion" rows="4">{{ $habitacion->descripcion }}</textarea>
                 </fieldset>
