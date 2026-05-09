@@ -90,3 +90,8 @@ Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('
 
 // Ruta para procesar el formulario de registro
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+
+use App\Http\Controllers\FrontController;
+
+// Ruta pública para el buscador del cliente
+Route::get('/buscar-habitaciones', [FrontController::class, 'buscarHabitaciones'])->name('cliente.buscar_habitaciones');

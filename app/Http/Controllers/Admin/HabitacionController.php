@@ -27,26 +27,21 @@ public function create()
 
     public function store(Request $request)
     {
-        // 1. Validamos los datos
+        // 1. Validamos solo los campos reales
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'tipo' => 'required|string|max:255',
-            'descripcion' => 'nullable|string',
-            'precio' => 'required|numeric',
-            'imagen_url' => 'nullable|url',
+            'numero' => 'required|integer',
+            'tipo_habitacion_id' => 'required|integer',
+            'estado' => 'required|string'
         ]);
 
-        // 2. Guardamos en PostgreSQL
+        // 2. Insertamos en PostgreSQL
         Habitacion::create([
-            'nombre' => $request->nombre,
-            'tipo' => $request->tipo,
-            'descripcion' => $request->descripcion,
-            'precio' => $request->precio,
-            'imagen_url' => $request->imagen_url,
-            'disponible' => true,
+            'numero' => $request->numero,
+            'tipo_habitacion_id' => $request->tipo_habitacion_id,
+            'estado' => $request->estado
         ]);
 
-        // 3. Regresamos a la tabla
+        // 3. Redirigimos de vuelta a la tabla
         return redirect()->route('habitaciones.index');
     }
 

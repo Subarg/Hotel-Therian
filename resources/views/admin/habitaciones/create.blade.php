@@ -64,43 +64,31 @@
 
         <section class="form-container">
             <form action="{{ route('habitaciones.store') }}" method="POST">
-                
-                @csrf
+    @csrf
+    
+    <div style="margin-bottom: 20px;">
+        <label style="color: #dcb38a;">Número de Habitación (Ej: 101)</label>
+        <input type="number" name="numero" required style="width: 100%; padding: 10px; background: #1a1a1a; color: white; border: 1px solid #333;">
+    </div>
 
-                <fieldset class="input-group">
-                    <label for="nombre">Nombre de la Habitación</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Suite Panorámica" required>
-                </fieldset>
+    <div style="margin-bottom: 20px;">
+        <label style="color: #dcb38a;">ID del Tipo (Ej: 1 para Suite, 2 para Sencilla)</label>
+        <input type="number" name="tipo_habitacion_id" required style="width: 100%; padding: 10px; background: #1a1a1a; color: white; border: 1px solid #333;">
+    </div>
 
-                <div class="grid-2-col">
-                    <fieldset class="input-group">
-                        <label for="tipo">Tipo</label>
-                        <select id="tipo" name="tipo" required>
-                            <option value="Estándar">Estándar</option>
-                            <option value="Doble">Doble</option>
-                            <option value="Lujo">Lujo</option>
-                            <option value="Suite">Suite</option>
-                        </select>
-                    </fieldset>
+    <div style="margin-bottom: 20px;">
+        <label style="color: #dcb38a;">Estado</label>
+        <select name="estado" required style="width: 100%; padding: 10px; background: #1a1a1a; color: white; border: 1px solid #333;">
+            <option value="Disponible">Disponible</option>
+            <option value="Ocupada">Ocupada</option>
+            <option value="Mantenimiento">Mantenimiento</option>
+        </select>
+    </div>
 
-                    <fieldset class="input-group">
-                        <label for="precio">Precio por Noche ($)</label>
-                        <input type="number" step="0.01" id="precio" name="precio" placeholder="Ej: 1500.50" required>
-                    </fieldset>
-                </div>
-
-                <fieldset class="input-group">
-                    <label for="imagen_url">URL de la Imagen</label>
-                    <input type="url" id="imagen_url" name="imagen_url" placeholder="https://ejemplo.com/foto.jpg">
-                </fieldset>
-
-                <fieldset class="input-group">
-                    <label for="descripcion">Descripción Breve</label>
-                    <textarea id="descripcion" name="descripcion" rows="4" placeholder="Describe los detalles de esta habitación..."></textarea>
-                </fieldset>
-
-                <button type="submit" class="btn-dorado">Guardar Habitación</button>
-            </form>
+    <button type="submit" style="background-color: #dcb38a; color: #111; padding: 10px 20px; border: none; font-weight: bold; cursor: pointer;">
+        Guardar Habitación
+    </button>
+</form>
         </section>
     </main>
 </body>

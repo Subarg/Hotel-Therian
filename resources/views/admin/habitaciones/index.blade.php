@@ -23,34 +23,33 @@
         </thead>
         <tbody>
             @foreach($habitaciones as $habitacion)
-            <tr style="border-bottom: 1px solid #333; background-color: #1a1a1a;">
+            <tr style="border-bottom: 1px solid #333; transition: 0.3s;">
+                
                 <td style="padding: 15px;">
-                    @if($habitacion->imagen_url)
-                        <img src="{{ $habitacion->imagen_url }}" alt="Imagen de {{ $habitacion->nombre }}" style="width: 80px; height: 50px; object-fit: cover; border-radius: 5px;">
-                    @else
-                        <div style="width: 80px; height: 50px; background-color: #333; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #888;">N/A</div>
-                    @endif
+                    <img src="{{ $habitacion->imagen_url ?? 'https://via.placeholder.com/100' }}" alt="Habitacion" style="width: 80px; height: 50px; border-radius: 5px; object-fit: cover;">
                 </td>
+                
                 <td style="padding: 15px;">{{ $habitacion->nombre }}</td>
+                
                 <td style="padding: 15px;">{{ $habitacion->tipo }}</td>
+                
                 <td style="padding: 15px;">${{ number_format($habitacion->precio, 2) }}</td>
-                <td style="padding: 15px;">
-                    @if($habitacion->disponible)
-                        <span style="color: #2ecc71; font-weight: bold;">Disponible</span>
-                    @else
-                        <span style="color: #e74c3c; font-weight: bold;">Ocupada</span>
-                    @endif
+                
+                <td style="padding: 15px; font-weight: bold; 
+                    color: 
+                    @if($habitacion->estado == 'Disponible') #2ecc71 
+                    @elseif($habitacion->estado == 'Mantenimiento') #f39c12 
+                    @else #e74c3c 
+                    @endif;">
+                    {{ $habitacion->estado }}
                 </td>
+                
                 <td style="padding: 15px;">
-                    <a href="{{ route('habitaciones.edit', $habitacion->id) }}" style="color: #f39c12; margin-right: 10px; text-decoration: none;">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <form action="{{ route('habitaciones.destroy', $habitacion->id) }}" method="POST" style="display: inline-block;">
+                    <a href="#" style="color: #dcb38a; margin-right: 15px; text-decoration: none;"><i class="fas fa-edit"></i></a>
+                    <form action="#" method="POST" style="display: inline-block;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" style="background: none; border: none; color: #e74c3c; cursor: pointer;" onclick="return confirm('¿Seguro que deseas eliminar esta habitación?')">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                        <button type="submit" style="background: none; border: none; color: #e74c3c; cursor: pointer;"><i class="fas fa-trash"></i></button>
                     </form>
                 </td>
             </tr>

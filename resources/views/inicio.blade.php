@@ -48,29 +48,33 @@
             </article>
 
             <section aria-label="Buscador de reservas" class="booking-glass-card">
-                <form action="#" method="GET" class="booking-form">
-                    
-                    <fieldset class="input-group">
-                        <label for="llegada">Llegada</label>
-                        <input type="date" id="llegada" name="llegada" required>
-                    </fieldset>
-                    
-                    <fieldset class="input-group">
-                        <label for="salida">Salida</label>
-                        <input type="date" id="salida" name="salida" required>
-                    </fieldset>
-                    
-                    <fieldset class="input-group">
-                        <label for="huespedes">Huéspedes</label>
-                        <select id="huespedes" name="huespedes">
-                            <option value="1">1 Persona</option>
-                            <option value="2">2 Personas</option>
-                            <option value="familia">Familia (3-4)</option>
-                        </select>
-                    </fieldset>
-                    
-                    <button type="submit" class="btn-book">Ver Habitaciones</button>
-                </form>
+                <section aria-label="Buscador de reservas" class="booking-glass-card">
+    
+    <form action="{{ route('cliente.buscar_habitaciones') }}" method="GET" class="form-busqueda-real">   
+        <fieldset class="input-group">
+            <label for="llegada">Llegada</label>
+            <input type="date" id="llegada" name="llegada" required>
+        </fieldset>
+        
+        <fieldset class="input-group">
+            <label for="salida">Salida</label>
+            <input type="date" id="salida" name="salida" required>
+        </fieldset>
+        
+        <fieldset class="input-group">
+            <label for="huespedes">Huéspedes</label>
+            <select id="huespedes" name="huespedes">
+                <option value="1">1 Persona</option>
+                <option value="2">2 Personas</option>
+                <option value="familia">Familia (3-4)</option>
+            </select>
+        </fieldset>
+        
+        <button type="submit" style="background-color: white; color: black; border-radius: 20px; padding: 10px 20px; font-weight: bold; cursor: pointer; border: none;">
+        Ver Habitaciones
+    </button>
+    </form>
+</section>
             </section>
 
         </main>

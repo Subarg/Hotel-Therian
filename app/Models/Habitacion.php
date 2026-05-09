@@ -5,16 +5,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Habitacion extends Model
 {
-    use HasFactory;
-    protected $table = 'habitacions';
+    protected $table = 'habitaciones';
 
-    // Agregamos los campos que el formulario enviará a la BD
+    // Agregamos los nuevos campos al arreglo
     protected $fillable = [
+        'numero', 
+        'tipo_habitacion_id', 
+        'estado',
         'nombre',
         'tipo',
         'descripcion',
         'precio',
-        'imagen_url',
-        'disponible',
+        'imagen_url'
     ];
 }
