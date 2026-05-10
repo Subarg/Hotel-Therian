@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Pago y Confirmacion - Hotel Therian</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,35 +32,6 @@
                         <label for="phone">Telefono</label>
                         <input id="phone" name="phone" type="tel" required>
                     </div>
-                </div>
-
-                <div class="field-group">
-                    <label for="paymentMethod">Metodo de pago</label>
-                    <select id="paymentMethod" name="paymentMethod" required>
-                        <option value="">Selecciona un metodo</option>
-                        <option value="card">Tarjeta de credito/debito</option>
-                        <option value="transfer">Transferencia bancaria</option>
-                    </select>
-                </div>
-
-                <div class="field-row">
-                    <div class="field-group">
-                        <label for="cardNumber">Numero de tarjeta</label>
-                        <input id="cardNumber" name="cardNumber" type="text" placeholder="1234 5678 9012 3456" required>
-                    </div>
-                    <div class="field-group">
-                        <label for="expiry">Expiracion</label>
-                        <input id="expiry" name="expiry" type="text" placeholder="MM/AA" required>
-                    </div>
-                    <div class="field-group cvv-group">
-                        <label for="cvv">CVV</label>
-                        <input id="cvv" name="cvv" type="password" placeholder="123" required>
-                    </div>
-                </div>
-
-                <div class="field-group">
-                    <label for="billingAddress">Direccion de facturacion</label>
-                    <input id="billingAddress" name="billingAddress" type="text" required>
                 </div>
 
                 <label class="terms">

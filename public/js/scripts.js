@@ -1,5 +1,3 @@
-/* SELECCIÓN DE ELEMENTOS DEL DOM */
-
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container'); 
@@ -244,17 +242,57 @@ function setupCheckoutPage() {
 
     if (!paymentForm) return;
 
-    paymentForm.addEventListener('submit', (event) => {
-        event.preventDefault();
+    paymentForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Evitamos que la página se recargue
+
+        const items = getCartItems();
 
         if (items.length === 0) {
             alert('No hay elementos en el carrito para procesar pago.');
             return;
         }
 
-        clearCart();
-        alert(`Pago confirmado por ${formatCurrency(totals.total)}. Gracias por tu reservacion.`);
-        window.location.href = '/';
+        // 1. Verificamos que hayan aceptado los términos (si tienes un checkbox con id "terminos")
+        // const terminos = document.getElementById('terminos');
+        // if(terminos && !terminos.checked) { alert('Acepta los términos'); return; }
+
+        // 2. Cambiamos el texto del botón para que el cliente sepa que está cargando
+        if (confirmButton) {
+            confirmButton.disabled = true;
+            confirmButton.textContent = 'Conectando con el banco (Stripe)...';
+        }
+
+        try {
+            // 3. Enviamos el carrito a tu Controlador de Laravel (PagoController)
+            const response = await fetch('/procesar-pago', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Leemos el token de seguridad que pusimos en el HTML
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ carrito: items })
+            });
+
+            const data = await response.json();
+
+            // 4. Si Stripe nos responde con un link seguro, mandamos al cliente hacia allá
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                alert('Error al generar la sesión de pago.');
+                confirmButton.disabled = false;
+                confirmButton.textContent = 'Confirmar y Pagar';
+            }
+
+        } catch (error) {
+            console.error("Error en el pago:", error);
+            alert('Hubo un problema de conexión con el servidor.');
+            if (confirmButton) {
+                confirmButton.disabled = false;
+                confirmButton.textContent = 'Confirmar y Pagar';
+            }
+        }
     });
 }
 

@@ -95,3 +95,8 @@ use App\Http\Controllers\FrontController;
 
 // Ruta pública para el buscador del cliente
 Route::get('/buscar-habitaciones', [FrontController::class, 'buscarHabitaciones'])->name('cliente.buscar_habitaciones');
+
+use App\Http\Controllers\PagoController;
+
+Route::post('/procesar-pago', [PagoController::class, 'procesarPago'])->name('pago.procesar');
+Route::get('/pago-exitoso', [PagoController::class, 'pagoExitoso'])->name('pago.exito');
