@@ -17,19 +17,31 @@
     <header class="glass-header" style="background-color: #111;">
         <div class="logo">Hotel Therian??</div>
         <nav>
-            <ul>
-                <li><a href="/inicio">Inicio</a></li>
-                <li><a href="/destinos">Destinos</a></li>
-                <li><a href="/experiencias">Experiencias</a></li>
-                <li><a href="/galeria">Galería</a></li>
-                <li>
-                    <button type="button" id="btn-carrito" class="btn-carrito" aria-label="Abrir carrito de compras">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span id="contador-carrito" class="contador-carrito" aria-live="polite">0</span>
+    <ul>
+        <li><a href="/inicio">Inicio</a></li>
+        <li><a href="/destinos">Destinos</a></li>
+        <li><a href="/experiencias">Experiencias</a></li>
+        <li><a href="/galeria">Galería</a></li>
+        
+        @auth
+            <li>
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" style="background: none; border: none; color: #fff; cursor: pointer; font-family: inherit; font-size: inherit; padding: 0; transition: 0.3s;">
+                        Cerrar Sesión
                     </button>
-                </li>
-            </ul>
-        </nav>
+                </form>
+            </li>
+        @endauth
+
+        <li>
+            <button type="button" id="btn-carrito" class="btn-carrito" aria-label="Abrir carrito de compras">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="contador-carrito" class="contador-carrito" aria-live="polite">0</span>
+            </button>
+        </li>
+    </ul>
+</nav>
     </header>
 
     <aside id="panel-carrito" class="panel-carrito" aria-label="Carrito de compras" aria-hidden="true">
