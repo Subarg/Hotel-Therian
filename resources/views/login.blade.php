@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <link rel="stylesheet" href="{{ asset('css/loging.css') }}">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div class="background" aria-hidden="true"></div> 
@@ -49,7 +50,7 @@
                         <i class="fas fa-lock" aria-hidden="true"></i>
                         <input type="password" id="loginPassword" name="password" placeholder="Contraseña" required>
                     </fieldset>
-                    
+                    <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}" style="margin-bottom: 20px;"></div>
                     <button type="submit">Iniciar Sesión</button>
                 </form>
             </article>
