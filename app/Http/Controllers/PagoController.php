@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReservaConfirmada;
+use Illuminate\Support\Facades\Auth;
 
 class PagoController extends Controller
 {
@@ -47,7 +50,17 @@ class PagoController extends Controller
 
     public function pagoExitoso()
     {
-        // Esta vista la verá el cliente cuando la tarjeta pase con éxito
+        try {
+            // Intentamos enviar el correo a la fuerza
+            \Illuminate\Support\Facades\Mail::to('angelemma865@gmail.com')
+                ->send(new \App\Mail\ReservaConfirmada());
+                
+        } catch (\Exception $e) {
+            // Si algo sale mal, detenemos la página y mostramos el error exacto en pantalla
+            dd("Error de correo: " . $e->getMessage());
+        }
+
+        // Si pasó el try sin problemas, mostramos el éxito
         return view('cliente.pago_exito');
     }
 }
